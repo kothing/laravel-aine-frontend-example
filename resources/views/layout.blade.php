@@ -7,13 +7,16 @@
     <meta name="author" content="David Grzyb">
     <meta name="description" content="">
 
+    <link rel="icon" type="image/svg+xml" href="{{ config('app.url') . '/favicon.svg'}}">
+
     <!-- Tailwind -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
     <!-- AlpineJS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.2/alpine.js" defer></script>
+    <script src="https://unpkg.com/alpinejs@2.8.2/dist/alpine.js" defer></script>
+
     <!-- Font Awesome -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+    <!-- <script src="{{config('app.url').'/js/plugins/font-awesome-5.13.0-all.min.js'}}"></script> -->
 </head>
 <body class="bg-white font-family-karla">
 
