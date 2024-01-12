@@ -1,7 +1,7 @@
 {
     "name": "laravel/aine",
     "description": "The Aine frontend example.",
-    "keywords": ["framework", "laravel", "lumen"],
+    "keywords": ["Aine", "laravel", "cms"],
     "license": "MIT",
     "type": "project",
     "require": {
