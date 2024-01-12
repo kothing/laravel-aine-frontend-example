@@ -4,14 +4,14 @@
 <!-- Posts Section -->
 <section class="w-full md:w-2/3 flex flex-col items-center px-3">
 	@foreach($posts as $po)
-		<article class="w-full flex flex-col shadow my-4">
+		<article class="w-full flex flex-col shadow my-4 rounded-md">
 			<!-- Article Image -->
 			@if(isset($po['cover-image']))
 				<a href="/{{ $po['url'] }}" class="hover:opacity-75">
 					<img src="{{ $po['cover-image']['thumb'] }}">
 				</a>
 			@endif
-			<div class="bg-white flex flex-col justify-start p-6">
+			<div class="flex flex-col justify-start p-6">
 				@if(isset($po['category']))
 					<a href="/category/{{ $po['category']['url'] }}" class="text-blue-700 text-sm font-bold uppercase  hover:text-blue-400">
 						{{ $po['category']['title'] }}
