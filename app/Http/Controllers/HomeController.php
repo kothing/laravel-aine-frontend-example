@@ -123,10 +123,10 @@ class HomeController extends Controller
             $comment['draft'] = 1;
             $comment['post'] = $post['id'];
 
-            $url = env('ELMAPI_API_URL').'/comments';
+            $url = env('AINE_API_URL').'/comments';
             $send = Http::withOptions(['verify' => false])
                         ->accept('application/json')
-                        ->withToken(env('ELMAPI_API_TOKEN'))
+                        ->withToken(env('AINE_API_TOKEN'))
                         ->post($url, $comment);
 
             $response = $send->json();
@@ -145,11 +145,11 @@ class HomeController extends Controller
     }
 
     private function api($collection='', $params=[]){
-        $url = env('ELMAPI_API_URL').'/'.$collection;
+        $url = env('AINE_API_URL').'/'.$collection;
 
         $response = Http::withOptions(['verify' => false])
                         ->accept('application/json')
-                        ->withToken(env('ELMAPI_API_TOKEN'))
+                        ->withToken(env('AINE_API_TOKEN'))
                         ->get($url, $params);
         
         return $response->json();
