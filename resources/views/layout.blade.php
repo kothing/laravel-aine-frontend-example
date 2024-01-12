@@ -43,10 +43,10 @@
     <header class="w-full container mx-auto">
         <div class="flex flex-col items-center py-12">
             <a class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl" href="/">
-                {{ @$blog_info['pagetitle'] }}
+                {{ @$blog_info['name'] }}
             </a>
             <p class="text-lg text-gray-600">
-                {{ @$blog_info['pagedesc'] }}
+                {{ @$blog_info['description'] }}
             </p>
         </div>
     </header>
@@ -105,6 +105,14 @@
                 @endforeach
             </div>
             <div class="uppercase pb-6">{{ @$blog_info['copyright'] }}</div>
+            <div class="pb-6">
+                <label>Globals fields: </label>
+                <span>
+                    @foreach($globals_info as $g)
+                    <span>{{$g}}</span>
+                    @endforeach
+                </span>
+            </div>
         </div>
     </footer>
 

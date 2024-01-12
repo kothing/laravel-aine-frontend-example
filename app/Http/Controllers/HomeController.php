@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
-    private function getBlogInfo(){
+    private function getGlobalsInfo(){
         $globals = $this->api('globals');
 
         $info = [];
@@ -17,12 +17,19 @@ class HomeController extends Controller
         return $info;
     }
 
+    private function getBlogInfo(){
+        $info = $this->api();
+        
+        return $info;
+    }
+
     public function index(Request $request){
+        $globals_info = $this->getGlobalsInfo();
         $blog_info = $this->getBlogInfo();
         $pages = $this->api('pages');
         $categories = $this->api('categories');
         $tags = $this->api('tags');
-
+        
         $each = 3;
         $offset = 0;
         if($request->has('page')) $offset = $each * ($request->get('page') - 1);
@@ -31,10 +38,19 @@ class HomeController extends Controller
 
         $posts =  $this->api('posts', 'sort=created_at:DESC,id:DESC&limit='.$each.'&offset='.$offset.'&timestamps');
         
-        return view('app', ['blog_info' => $blog_info, 'pages' => $pages, 'categories' => $categories, 'tags' => $tags, 'posts' => $posts, 'total_posts' => $total_posts]);
+        return view('app', [
+            'globals_info'  => $globals_info,
+            'blog_info'     => $blog_info, 
+            'pages'         => $pages, 
+            'categories'    => $categories, 
+            'tags'          => $tags, 
+            'posts'         => $posts, 
+            'total_posts'   => $total_posts
+        ]);
     }
 
     public function getPageByURL($url){
+        $globals_info = $this->getGlobalsInfo();
         $blog_info = $this->getBlogInfo();
         $pages = $this->api('pages');
         $categories = $this->api('categories');
@@ -42,12 +58,20 @@ class HomeController extends Controller
 
         $page = $this->api('pages', 'first&where[url]='.$url);
 
-        return view('page', ['blog_info' => $blog_info, 'pages' => $pages, 'categories' => $categories, 'tags' => $tags, 'page' => $page]);
+        return view('page', [
+            'globals_info'  => $globals_info,
+            'blog_info'     => $blog_info, 
+            'pages'         => $pages, 
+            'categories'    => $categories, 
+            'tags'          => $tags, 
+            'page'          => $page
+        ]);
     }
 
     public function getPostByURL($url, $errors = [], $success = false){
         session_start();
 
+        $globals_info = $this->getGlobalsInfo();
         $blog_info = $this->getBlogInfo();
         $pages = $this->api('pages');
         $categories = $this->api('categories');
@@ -56,10 +80,21 @@ class HomeController extends Controller
         $post = $this->api('posts', "where[url]=".$url."&first&timestamps");
         $comments = $this->api('comments', "where[post]=".$post['id'].'&timestamps');
 
-        return view('post', ['blog_info' => $blog_info, 'pages' => $pages, 'categories' => $categories, 'tags' => $tags, 'post' => $post, 'comments' => $comments, 'errors' => $errors, 'success' => $success]);
+        return view('post', [
+            'globals_info'  => $globals_info,
+            'blog_info'     => $blog_info, 
+            'pages'         => $pages, 
+            'categories'    => $categories, 
+            'tags'          => $tags, 
+            'post'          => $post, 
+            'comments'      => $comments, 
+            'errors'        => $errors, 
+            'success'       => $success
+        ]);
     }
 
     public function getPostsByCategory($url, Request $request){
+        $globals_info = $this->getGlobalsInfo();
         $blog_info = $this->getBlogInfo();
         $pages = $this->api('pages');
         $categories = $this->api('categories');
@@ -67,17 +102,29 @@ class HomeController extends Controller
 
         $each = 3;
         $offset = 0;
-        if($request->has('page')) $offset = $each * ($request->get('page') - 1);
+        if($request->has('page')) {
+            $offset = $each * ($request->get('page') - 1);
+        }
 
         $posts = $this->api('posts', 'whereRelation[category][url]='.$url.'&sort=created_at:DESC,id:DESC&limit='.$each.'&offset='.$offset.'&timestamps');
 
         $total = $this->api('posts', 'whereRelation[category][url]='.$url.'&count');
         $total_posts = ceil($total / $each);
 
-        return view('app', ['blog_info' => $blog_info, 'pages' => $pages, 'categories' => $categories, 'tags' => $tags, 'posts' => $posts, 'total_posts' => $total_posts, 'url' => $url]);
+        return view('app', [
+            'globals_info'  => $globals_info,
+            'blog_info'     => $blog_info, 
+            'pages'         => $pages, 
+            'categories'    => $categories, 
+            'tags'          => $tags, 
+            'posts'         => $posts, 
+            'total_posts'   => $total_posts, 
+            'url'           => $url
+        ]);
     }
 
     public function getPostsByAuthor($id, Request $request){
+        $globals_info = $this->getGlobalsInfo();
         $blog_info = $this->getBlogInfo();
         $pages = $this->api('pages');
         $categories = $this->api('categories');
@@ -92,10 +139,19 @@ class HomeController extends Controller
         $total = $this->api('posts', 'where[author]='.$id.'&count');
         $total_posts = ceil($total / $each);
 
-        return view('app', ['blog_info' => $blog_info, 'pages' => $pages, 'categories' => $categories, 'tags' => $tags, 'posts' => $posts, 'total_posts' => $total_posts]);
+        return view('app', [
+            'globals_info'  => $globals_info,
+            'blog_info'     => $blog_info, 
+            'pages'         => $pages, 
+            'categories'    => $categories, 
+            'tags'          => $tags, 
+            'posts'         => $posts, 
+            'total_posts'   => $total_posts
+        ]);
     }
 
     public function getPostsByTags($tag, Request $request){
+        $globals_info = $this->getGlobalsInfo();
         $blog_info = $this->getBlogInfo();
         $pages = $this->api('pages');
         $categories = $this->api('categories');
@@ -110,7 +166,15 @@ class HomeController extends Controller
         $total = $this->api('posts', 'whereRelation[tags][tag]='.$tag.'&count');
         $total_posts = ceil($total / $each);
 
-        return view('app', ['blog_info' => $blog_info, 'pages' => $pages, 'categories' => $categories, 'tags' => $tags, 'posts' => $posts, 'total_posts' => $total_posts]);
+        return view('app', [
+            'globals_info'  => $globals_info,
+            'blog_info'     => $blog_info, 
+            'pages'         => $pages, 
+            'categories'    => $categories, 
+            'tags'          => $tags, 
+            'posts'         => $posts, 
+            'total_posts'   => $total_posts
+        ]);
     }
 
     public function postComment($id, Request $request){
