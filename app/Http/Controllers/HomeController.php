@@ -17,7 +17,7 @@ class HomeController extends Controller
         return $info;
     }
 
-    private function getBlogInfo(){
+    private function getProjectInfo(){
         $info = $this->api();
         
         return $info;
@@ -25,7 +25,7 @@ class HomeController extends Controller
 
     public function index(Request $request){
         $globals_info = $this->getGlobalsInfo();
-        $blog_info = $this->getBlogInfo();
+        $project_info = $this->getProjectInfo();
         $pages = $this->api('pages');
         $categories = $this->api('categories');
         $tags = $this->api('tags');
@@ -40,7 +40,7 @@ class HomeController extends Controller
         
         return view('app', [
             'globals_info'  => $globals_info,
-            'blog_info'     => $blog_info, 
+            'project_info'     => $project_info, 
             'pages'         => $pages, 
             'categories'    => $categories, 
             'tags'          => $tags, 
@@ -51,7 +51,7 @@ class HomeController extends Controller
 
     public function getPageByURL($url){
         $globals_info = $this->getGlobalsInfo();
-        $blog_info = $this->getBlogInfo();
+        $project_info = $this->getProjectInfo();
         $pages = $this->api('pages');
         $categories = $this->api('categories');
         $tags = $this->api('tags');
@@ -60,7 +60,7 @@ class HomeController extends Controller
 
         return view('page', [
             'globals_info'  => $globals_info,
-            'blog_info'     => $blog_info, 
+            'project_info'     => $project_info, 
             'pages'         => $pages, 
             'categories'    => $categories, 
             'tags'          => $tags, 
@@ -72,7 +72,7 @@ class HomeController extends Controller
         session_start();
 
         $globals_info = $this->getGlobalsInfo();
-        $blog_info = $this->getBlogInfo();
+        $project_info = $this->getProjectInfo();
         $pages = $this->api('pages');
         $categories = $this->api('categories');
         $tags = $this->api('tags');
@@ -82,7 +82,7 @@ class HomeController extends Controller
 
         return view('post', [
             'globals_info'  => $globals_info,
-            'blog_info'     => $blog_info, 
+            'project_info'     => $project_info, 
             'pages'         => $pages, 
             'categories'    => $categories, 
             'tags'          => $tags, 
@@ -95,7 +95,7 @@ class HomeController extends Controller
 
     public function getPostsByCategory($url, Request $request){
         $globals_info = $this->getGlobalsInfo();
-        $blog_info = $this->getBlogInfo();
+        $project_info = $this->getProjectInfo();
         $pages = $this->api('pages');
         $categories = $this->api('categories');
         $tags = $this->api('tags');
@@ -113,7 +113,7 @@ class HomeController extends Controller
 
         return view('app', [
             'globals_info'  => $globals_info,
-            'blog_info'     => $blog_info, 
+            'project_info'     => $project_info, 
             'pages'         => $pages, 
             'categories'    => $categories, 
             'tags'          => $tags, 
@@ -125,7 +125,7 @@ class HomeController extends Controller
 
     public function getPostsByAuthor($id, Request $request){
         $globals_info = $this->getGlobalsInfo();
-        $blog_info = $this->getBlogInfo();
+        $project_info = $this->getProjectInfo();
         $pages = $this->api('pages');
         $categories = $this->api('categories');
         $tags = $this->api('tags');
@@ -141,7 +141,7 @@ class HomeController extends Controller
 
         return view('app', [
             'globals_info'  => $globals_info,
-            'blog_info'     => $blog_info, 
+            'project_info'     => $project_info, 
             'pages'         => $pages, 
             'categories'    => $categories, 
             'tags'          => $tags, 
@@ -152,7 +152,7 @@ class HomeController extends Controller
 
     public function getPostsByTags($tag, Request $request){
         $globals_info = $this->getGlobalsInfo();
-        $blog_info = $this->getBlogInfo();
+        $project_info = $this->getProjectInfo();
         $pages = $this->api('pages');
         $categories = $this->api('categories');
         $tags = $this->api('tags');
@@ -168,7 +168,7 @@ class HomeController extends Controller
 
         return view('app', [
             'globals_info'  => $globals_info,
-            'blog_info'     => $blog_info, 
+            'project_info'     => $project_info, 
             'pages'         => $pages, 
             'categories'    => $categories, 
             'tags'          => $tags, 

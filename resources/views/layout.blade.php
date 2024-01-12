@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ @$blog_info['pagetitle'] }}</title>
+    <title>{{ @$project_info['pagetitle'] }}</title>
     <meta name="description" content="">
 
     <link rel="icon" type="image/svg+xml" href="{{ config('app.url') . '/favicon.svg'}}">
@@ -43,10 +43,10 @@
     <header class="w-full container mx-auto">
         <div class="flex flex-col items-center py-12">
             <a class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl" href="/">
-                {{ @$blog_info['name'] }}
+                {{ @$project_info['name'] }}
             </a>
             <p class="text-lg text-gray-600">
-                {{ @$blog_info['description'] }}
+                {{ @$project_info['description'] }}
             </p>
         </div>
     </header>
@@ -104,7 +104,7 @@
                     @endif
                 @endforeach
             </div>
-            <div class="uppercase pb-6">{{ @$blog_info['copyright'] }}</div>
+            <div class="uppercase pb-6">{{ @$project_info['copyright'] }}</div>
             <div class="pb-6">
                 <label>Globals fields: </label>
                 <span>
