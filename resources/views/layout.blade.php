@@ -9,13 +9,13 @@
     <link rel="icon" type="image/svg+xml" href="{{ config('app.url') . '/favicon.svg'}}">
 
     <!-- Tailwind -->
-    <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="{{config('app.url').'/vendor/tailwindcss/tailwind@2.2.19-lite.min.css'}}" rel="stylesheet">
 
     <!-- AlpineJS -->
-    <!--<script src="https://unpkg.com/alpinejs@2.8.2/dist/alpine.js" defer></script>-->
+    <!--<script src="{{config('app.url').'/vendor/alpinejs/alpine@2.8.2.js'}}" defer></script>-->
 
     <!-- Font Awesome -->
-    <!--<script src="{{config('app.url').'/js/plugins/font-awesome-5.13.0-all.min.js'}}"></script>-->
+    <!--<script src="{{config('app.url').'/vendor/font-awesome/font-awesome@5.13.0-all.min.js'}}"></script>-->
 </head>
 <body class="bg-white font-family-karla">
 
@@ -95,7 +95,7 @@
         </aside>
     </div>
 
-    <footer class="w-full border-t bg-white pb-12">
+    <footer class="w-full border-t bg-white">
         <div class="w-full container mx-auto flex flex-col items-center">
             <div class="flex flex-col md:flex-row text-center md:text-left md:justify-between py-6">
                 @foreach($pages as $pa)
