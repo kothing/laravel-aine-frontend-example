@@ -13,12 +13,12 @@
         <?php unset($_SESSION['success']) ?>
     @endif
 
-    <article class="flex flex-col shadow my-4">
+    <article class="flex flex-col shadow my-4 rounded-md">
         <!-- Article Image -->
         @if(isset($post['cover-image']))
             <img src="{{ $post['cover-image']['thumb'] }}">
         @endif
-        <div class="bg-white flex flex-col justify-start p-6">
+        <div class="flex flex-col justify-start p-6">
             @if(isset($post['category']))
                 <a href="/category/{{ $post['category']['url'] }}" class="text-blue-700 text-sm font-bold uppercase  hover:text-blue-400">
                     {{ $post['category']['title'] }}
@@ -33,7 +33,7 @@
         </div>
     </article>
 
-    <div class="w-full flex flex-col text-center md:text-left md:flex-row shadow bg-white mt-10 mb-10 p-6">
+    <div class="w-full flex flex-col text-center md:text-left md:flex-row shadow mt-10 mb-10 p-6 rounded-md">
         <div class="w-32 h-32 flex justify-center md:justify-start mr-10 rounded-full overflow-hidden">
             @if(isset($post['author']['avatar']))
                 <img src="{{ $post['author']['avatar']['thumb'] }}" class="object-cover">
@@ -69,7 +69,7 @@
         @endif
     </div>
 
-    <div class="w-full text-center md:text-left md:flex-row shadow bg-white mt-4 mb-10 p-6">
+    <div class="w-full text-center md:text-left md:flex-row shadow mt-4 mb-10 p-6 rounded-md">
         <p class="font-semibold text-2xl">Responses ({{count($comments)}})</p>
 
         @foreach($comments as $comment)
@@ -79,11 +79,11 @@
         </div>
         @endforeach
 
-        <div class="p-4 border border-gray-200 text-sm mt-10">
+        <div class="p-4 border border-gray-200 text-sm mt-10 rounded-md">
             <form method="post" action="/comment/{{ $post['id'] }}">
                 <div class="w-full">
                     <label>Name</label>
-                    <input name="name" type="text" class="w-full border border-gray-200 p-3">
+                    <input name="name" type="text" class="w-full border border-gray-200 p-3 rounded-md">
                     
                     @if(isset($_SESSION['errors']['name']))
                     <p class="text-sm text-red-500">{{ $_SESSION['errors']['name'][0] }}</p>
@@ -91,7 +91,7 @@
                 </div>
                 <div class="w-full mt-2">
                     <label>E-mail</label>
-                    <input name="email" type="text" class="w-full border border-gray-200 p-3">
+                    <input name="email" type="text" class="w-full border border-gray-200 p-3 rounded-md">
 
                     @if(isset($_SESSION['errors']['e-mail']))
                     <p class="text-sm text-red-500">{{ $_SESSION['errors']['e-mail'][0] }}</p>
@@ -99,13 +99,13 @@
                 </div>
                 <div class="w-full mt-2">
                     <label>Your Response</label>
-                    <textarea name="comment" class="w-full border border-gray-200 p-3"></textarea>
+                    <textarea name="comment" class="w-full border border-gray-200 p-3 rounded-md"></textarea>
                     @if(isset($_SESSION['errors']['comment']))
                     <p class="text-sm text-red-500">{{ $_SESSION['errors']['comment'][0] }}</p>
                     @endif
                 </div>
                 <div class="w-1/4 mt-2">
-                    <button type="submit" class="w-full border border-gray-200 p-3 bg-indigo-500 text-white">SEND</button>
+                    <button type="submit" class="w-full border border-gray-200 p-3 bg-indigo-500 text-white rounded-md">SEND</button>
                 </div>
                 <a name="comment"></a>
             </form>

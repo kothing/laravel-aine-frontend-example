@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ @$blog_info['pagetitle'] }}</title>
-    <meta name="author" content="David Grzyb">
     <meta name="description" content="">
 
     <link rel="icon" type="image/svg+xml" href="{{ config('app.url') . '/favicon.svg'}}">
@@ -13,10 +12,10 @@
     <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
     <!-- AlpineJS -->
-    <script src="https://unpkg.com/alpinejs@2.8.2/dist/alpine.js" defer></script>
+    <!--<script src="https://unpkg.com/alpinejs@2.8.2/dist/alpine.js" defer></script>-->
 
     <!-- Font Awesome -->
-    <!-- <script src="{{config('app.url').'/js/plugins/font-awesome-5.13.0-all.min.js'}}"></script> -->
+    <!--<script src="{{config('app.url').'/js/plugins/font-awesome-5.13.0-all.min.js'}}"></script>-->
 </head>
 <body class="bg-white font-family-karla">
 
@@ -24,30 +23,17 @@
     <nav class="w-full py-4 bg-blue-800 shadow">
         <div class="w-full container mx-auto flex flex-wrap items-center justify-between">
 
-            <nav>
-                <ul class="flex items-center justify-between font-bold text-sm text-white uppercase no-underline">
-                    <li><a class="hover:text-gray-200 hover:underline px-4" href="/">Home</a></li>    
-                    @foreach($pages as $pa)
-                        @if($pa['menu-position'] == 'MainMenu' || $pa['menu-position'] == 'Both')
-                            <li><a class="hover:text-gray-200 hover:underline px-4" href="/page/{{ $pa['url'] }}">{{ $pa['title'] }}</a></li>
-                        @endif
-                    @endforeach
-                </ul>
-            </nav>
+            <ul class="flex items-center justify-between font-bold text-sm text-white uppercase no-underline">
+                <li><a class="hover:text-gray-200 hover:underline px-4" href="/">Home</a></li>    
+                @foreach($pages as $pa)
+                    @if($pa['menu-position'] == 'MainMenu' || $pa['menu-position'] == 'Both')
+                        <li><a class="hover:text-gray-200 hover:underline px-4" href="/page/{{ $pa['url'] }}">{{ $pa['title'] }}</a></li>
+                    @endif
+                @endforeach
+            </ul>
 
             <div class="flex items-center text-lg no-underline text-white pr-6">
-                <a class="" href="{{ @$blog_info['facebook'] }}" target="_blank">
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <a class="pl-6" href="{{ @$blog_info['instagram'] }}" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a class="pl-6" href="{{ @$blog_info['twitter'] }}" target="_blank">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a class="pl-6" href="{{ @$blog_info['linkedin'] }}" target="_blank">
-                    <i class="fab fa-linkedin"></i>
-                </a>
+                
             </div>
         </div>
 

@@ -3,34 +3,41 @@
 @section('content')
 <!-- Posts Section -->
 <section class="w-full md:w-2/3 flex flex-col items-center px-3">
-	@foreach($posts as $po)
+	@foreach($posts as $post)
 		<article class="w-full flex flex-col shadow my-4 rounded-md">
 			<!-- Article Image -->
-			@if(isset($po['cover-image']))
-				<a href="/{{ $po['url'] }}" class="hover:opacity-75">
-					<img src="{{ $po['cover-image']['thumb'] }}">
+			@if(isset($post['cover-image']))
+				<a href="/{{ $post['url'] }}" class="hover:opacity-75">
+					<img src="{{ $post['cover-image']['thumb'] }}">
 				</a>
 			@endif
 			<div class="flex flex-col justify-start p-6">
-				@if(isset($po['category']))
-					<a href="/category/{{ $po['category']['url'] }}" class="text-blue-700 text-sm font-bold uppercase  hover:text-blue-400">
-						{{ $po['category']['title'] }}
-					</a>
-				@endif
-				<a href="/{{ $po['url'] }}" class="text-3xl font-bold hover:text-gray-700 pb-4 mt-4">{{ $po['title'] }}</a>
-				<p class="text-sm pb-3">
-				By <a href="/author/{{ @$po['author']['id'] }}"><strong>{{ @$po['author']['name'] }}</strong></a>, Published on {{ date('d M Y', strtotime($po['created_at'])) }}
-				</p>
-				<a href="/{{ $po['url'] }}" class="pb-6">{{ @$po['excerpt'] }}</a>
+				<h1 class="text-3xl font-bold hover:text-gray-700 pb-4">
+				   <a href="/{{ $post['url'] }}" class="hover:text-gray-700">
+    				    {{ $post['title'] }}
+    				</a> 
+				</h1>
+				<div class="text-sm pb-3">
+				    <span>By <a href="/author/{{ @$post['author']['id'] }}"><strong>{{ @$post['author']['name'] }}</strong></a></span>,
+				    <span>Published on {{ date('d M Y', strtotime($post['created_at'])) }}</span>,
+				    <span>
+				        @if(isset($post['category']))
+        					<a href="/category/{{ $post['category']['url'] }}" class="text-blue-700 text-sm font-bold uppercase  hover:text-blue-400">
+        						{{ $post['category']['title'] }}
+        					</a>
+        				@endif
+				    </span>
+				</div>
+				<div class="pb-6">{{ @$post['excerpt'] }}</div>
 				
-				@if(isset($po['tags']))
+				@if(isset($post['tags']))
 					<div class="w-full">
-					@foreach(@$po['tags'] as $tag)
+					@foreach(@$post['tags'] as $tag)
 						<a href="/tag/{{ $tag['tag'] }}" class="mr-2 mb-2 inline-block px-3 py-1 bg-gray-100 rounded-md hover:bg-gray-200">{{ $tag['tag'] }}</a>
 					@endforeach
 					</div>
 					@endif
-				<a href="/{{ $po['url'] }}" class="uppercase text-gray-800 hover:text-black mt-4">Continue Reading <i class="fas fa-arrow-right"></i></a>
+				<a href="/{{ $post['url'] }}" class="uppercase text-gray-800 hover:text-black mt-4">Continue Reading <i class="fas fa-arrow-right"></i></a>
 			</div>
 		</article>
 	@endforeach
