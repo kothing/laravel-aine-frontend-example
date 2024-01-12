@@ -1,6 +1,6 @@
 {
-    "name": "laravel/lumen",
-    "description": "The Laravel Lumen Framework.",
+    "name": "laravel/aine",
+    "description": "The Aine frontend example.",
     "keywords": ["framework", "laravel", "lumen"],
     "license": "MIT",
     "type": "project",
