@@ -106,7 +106,7 @@
             </div>
             <div class="uppercase pb-6">{{ @$project_info['copyright'] }}</div>
             <div class="pb-6">
-                <label>Globals fields: </label>
+                <label>Global fields: </label>
                 <span>
                     @foreach($globals_info as $g)
                     <span>{{$g}}</span>
