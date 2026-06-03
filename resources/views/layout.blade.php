@@ -22,21 +22,19 @@
     <!-- Top Bar Nav -->
     <nav class="w-full py-4 bg-blue-800 shadow">
         <div class="w-full container mx-auto flex flex-wrap items-center justify-between">
-
             <ul class="flex items-center justify-between font-bold text-sm text-white uppercase no-underline">
                 <li><a class="hover:text-gray-200 hover:underline px-4" href="/">Home</a></li>    
-                @foreach($pages as $pa)
-                    @if($pa['menu-position'] == 'MainMenu' || $pa['menu-position'] == 'Both')
-                        <li><a class="hover:text-gray-200 hover:underline px-4" href="/page/{{ $pa['url'] }}">{{ $pa['title'] }}</a></li>
+                @foreach($pages as $page)
+                    @if($page['menu-position'] == 'MainMenu' || $page['menu-position'] == 'Both')
+                        <li>
+                            <a class="hover:text-gray-200 hover:underline px-4" href="/page/{{ $page['url'] }}">
+                                {{ $page['title'] }}
+                            </a>
+                        </li>
                     @endif
                 @endforeach
             </ul>
-
-            <div class="flex items-center text-lg no-underline text-white pr-6">
-                
-            </div>
         </div>
-
     </nav>
 
     <!-- Text Header -->
@@ -65,7 +63,12 @@
         <div :class="open ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
             <div class="w-full container mx-auto flex flex-col sm:flex-row items-center justify-center text-sm font-bold uppercase mt-0 px-6 py-2">
                 @foreach($categories as $cat)
-                    <a href="/category/{{ $cat['url'] }}" class="hover:bg-gray-400 rounded py-2 px-4 mx-2 @if(@$url == $cat['url']) bg-gray-400 @endif">{{ $cat['title'] }}</a>
+                    <a 
+                        href="/category/{{ $cat['url'] }}" 
+                        class="hover:bg-gray-400 rounded py-2 px-4 mx-2 @if(@$url == $cat['url']) bg-gray-400 @endif"
+                    >
+                        {{ $cat['title'] }}
+                    </a>
                 @endforeach
             </div>
         </div>
@@ -78,18 +81,12 @@
 
         <!-- Sidebar Section -->
         <aside class="w-full md:w-1/3 flex flex-col items-center px-3">
-            <div class="w-full shadow flex flex-col my-4 p-6 rounded-md">
-                <p class="text-xl font-semibold pb-5">About Us</p>
-                <p class="pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis est eu odio sagittis tristique. Vestibulum ut finibus leo. In hac habitasse platea dictumst.</p>
-                <a href="/page/about" class="w-full bg-blue-800 text-white font-bold text-sm uppercase rounded hover:bg-blue-700 flex items-center justify-center px-2 py-3 mt-4">
-                    Get to know us
-                </a>
-            </div>
-            
             <div class="w-full shadow my-4 p-6 rounded-md">
                 <p class="text-xl font-semibold pb-5">Tags</p>
                 @foreach($tags as $ta)
-                    <a href="/tag/{{ $ta['tag'] }}" class="mr-2 mb-2 inline-block px-3 py-1 bg-gray-100 rounded-md hover:bg-gray-200">{{ $ta['tag'] }}</a>
+                    <a href="/tag/{{ $ta['tag'] }}" class="mr-2 mb-2 inline-block px-3 py-1 bg-gray-100 rounded-md hover:bg-gray-200">
+                        {{ $ta['tag'] }}
+                    </a>
                 @endforeach
             </div>
         </aside>
@@ -98,9 +95,9 @@
     <footer class="w-full border-t bg-white">
         <div class="w-full container mx-auto flex flex-col items-center">
             <div class="flex flex-col md:flex-row text-center md:text-left md:justify-between py-6">
-                @foreach($pages as $pa)
-                    @if($pa['menu-position'] == 'FooterMenu' || $pa['menu-position'] == 'Both')
-                        <a href="/page/{{ $pa['url'] }}" class="uppercase px-3">{{ $pa['title'] }}</a>
+                @foreach($pages as $page)
+                    @if($page['menu-position'] == 'FooterMenu' || $page['menu-position'] == 'Both')
+                        <a href="/page/{{ $page['url'] }}" class="uppercase px-3">{{ $page['title'] }}</a>
                     @endif
                 @endforeach
             </div>
