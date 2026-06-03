@@ -8,7 +8,7 @@
 			<!-- Article Image -->
 			@if(isset($post['cover-image']))
 				<a href="/{{ $post['url'] }}" class="hover:opacity-75">
-					<img src="{{ $post['cover-image']['thumb'] }}">
+					<img src="{{ $post['cover-image']['full_url_thumb'] }}">
 				</a>
 			@endif
 			<div class="flex flex-col justify-start p-6">

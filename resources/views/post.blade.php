@@ -13,10 +13,10 @@
         <?php unset($_SESSION['success']) ?>
     @endif
 
-    <article class="flex flex-col shadow my-4 rounded-md">
+    <article class="w-full flex flex-col shadow my-4 rounded-md">
         <!-- Article Image -->
         @if(isset($post['cover-image']))
-            <img src="{{ $post['cover-image']['thumb'] }}">
+            <img src="{{ $post['cover-image']['full_url_thumb'] }}">
         @endif
         <div class="flex flex-col justify-start p-6">
             @if(isset($post['category']))
@@ -34,15 +34,19 @@
     </article>
 
     <div class="w-full flex flex-col text-center md:text-left md:flex-row shadow mt-10 mb-10 p-6 rounded-md">
+        @if(isset($post['author']['avatar']))
         <div class="w-32 h-32 flex justify-center md:justify-start mr-10 rounded-full overflow-hidden">
-            @if(isset($post['author']['avatar']))
-                <img src="{{ $post['author']['avatar']['thumb'] }}" class="object-cover">
-            @endif
+            <img src="{{ $post['author']['avatar']['thumb'] }}" class="object-cover">
         </div>
+        @endif
         @if(isset($post['author']))
             <div class="flex-1 flex flex-col justify-center md:justify-start">
-                <p class="font-semibold text-2xl"><a href="/author/{{ $post['author']['id'] }}">{{ $post['author']['name'] }}</a></p>
-                <p class="pt-2">{{ $post['author']['info'] }}</p>
+                <p class="font-semibold text-2xl">
+                    <a href="/author/{{ $post['author']['id'] }}">{{ $post['author']['name'] }}</a>
+                </p>
+                @if(isset($post['author']['info']))
+                    <p class="pt-2">{{ $post['author']['info'] }}</p>
+                @endif
                 <div class="flex items-center justify-center md:justify-start text-2xl no-underline text-blue-800 pt-4">
                     @if(isset($post['author']['facebook']))
                     <a class="" href="{{ $post['author']['facebook'] }}" target="_blank">
