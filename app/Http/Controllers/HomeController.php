@@ -194,10 +194,11 @@ class HomeController extends Controller
                         ->post($url, $comment);
 
             $response = $send->json();
+            $data = isset($response['data']) ? $response['data'] : $response;
 
             session_start();
-            if(isset($response['errors'])){
-                $_SESSION['errors'] = $response['errors'];
+            if(isset($response['code']) && $response['code'] !== 0){
+                $_SESSION['errors'] = $data['errors'] ?? $response['message'] ?? '操作失败';
 
                 return redirect('/'.$post['url']);
             } else {
@@ -216,6 +217,8 @@ class HomeController extends Controller
                         ->withToken(env('AINE_API_TOKEN'))
                         ->get($url, $params);
         
-        return $response->json();
+        $result = $response->json();
+        
+        return isset($result['data']) ? $result['data'] : $result;
     }
 }
